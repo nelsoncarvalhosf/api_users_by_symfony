@@ -1,0 +1,25 @@
+#./.github/workflows/build.yaml
+name: "Build & Tests"
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    # env:
+    #   DATABASE_URL="sqlite:///%kernel.project_dir%/database.db"
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v2
+      - name: Check runtime version
+        run: php -v && composer --version
+      - name: Install dependencies
+        run: composer install -o
+      - name: Create database
+        run: php bin/console doctrine:database:create --env test
+      - name: Create database schema
+        run: php bin/console doctrine:migrations:migrate --env test
+      - name: Run functional tests
+        run: php bin/phpunit
