@@ -9,7 +9,7 @@ jobs:
   build:
     runs-on: ubuntu-latest
     # env:
-    #   DATABASE_URL="sqlite:///%kernel.project_dir%/database.db"
+    #   DATABASE_URL: DATABASE_URL="mysql://root:root@127.0.0.1:3306/api_users"
     steps:
       - name: Check out repository
         uses: actions/checkout@v2
@@ -17,5 +17,11 @@ jobs:
         run: php -v && composer --version
       - name: Install dependencies
         run: composer install -o
+      - name: Start Mysql
+        run: sudo systemctl start mysql
+      - name: Create database
+        run: php bin/console doctrine:database:create --env test
+      - name: Create database schema
+        run: php bin/console doctrine:schema:create --env test
       - name: Run functional tests
         run: php bin/phpunit
