@@ -21,7 +21,7 @@ class UpdateUserActionTest extends TestCase
         $this->client->request(method: 'PUT', uri: '/users/1', content: json_encode([
             'firstName' => 'User2',
             'lastName' => 'Test',
-            'email' => 'user2@/test',
+            'email' => 'user2@test.com',
         ]));
         $statusCode = $this->client->getResponse()->getStatusCode();
 
@@ -40,7 +40,7 @@ class UpdateUserActionTest extends TestCase
         $this->client->request(method: 'PUT', uri: '/users/1', content: json_encode([
             'firstName' => 'User3',
             'lastName' => 'Test',
-            'email' => 'user3@test.com',
+            'email' => 'user3@/test',
         ]));
         $statusCode = $this->client->getResponse()->getStatusCode();
 
