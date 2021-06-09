@@ -40,3 +40,9 @@ Desta forma, teremos um total de três tabelas (user, user_address, user_contact
 1. Requisições e respostas da API devem ser no formato JSON
 2. API deve conter testes funcionais para garantir que a aplicação está funcionando corretamente
 3. Devemos incluir uma integração contínua no GitHub Actions para buildar e rodar os testes automaticamente a cada "git push"
+
+## Como rodar a aplicação
+
+1. composer i
+2. php bin/console doctrine:database:create
+3. php bin/console doctrine:migrations:migrate
