@@ -17,9 +17,5 @@ jobs:
         run: php -v && composer --version
       - name: Install dependencies
         run: composer install -o
-      - name: Create database
-        run: php bin/console doctrine:database:create --env test
-      - name: Create database schema
-        run: php bin/console doctrine:migrations:migrate --env test
       - name: Run functional tests
         run: php bin/phpunit
